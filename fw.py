@@ -1,5 +1,8 @@
 import tensorflow as tf 
 import numpy as np 
+tf.enable_eager_execution() 
+
+
 
 class fastweights(object):
 	def __init__(self, inputt, output_size, batch_size=128, decay_rate = 0.9, learning_rate = 0.5, hidden_size=512):
@@ -10,13 +13,13 @@ class fastweights(object):
 		self.DR = decay_rate
 		self.LR = learning_rate
 		self.hidden_size = hidden_size
-		self.W_x = tfe.variable(tf.random_uniform([inputt.shape[1], hidden_size], -np.sqrt(2/input_size), np.sqrt(2/input_size)), dtype=float32)
-		self.B_x = tfe.variable(tf.zeros(hidden_size), dtype=float32)
-		self.W_h = tfe.variable(initial_value = 0.5 * np.identity(hidden_size), dtype = float32)
-		self.W_y = tfe.variable(tf.random_uniform([hidden_size, output_size], -np.sqrt(2/hidden_size), np.sqrt(2/hidden_size)), dtype = float32)
-		self.B_y = tfe.variable(tf.zeros(output_size), dtype=float32)
-		self.scale = tfe.variable(tf.ones(hidden_size), dtype =float32)
-		self.shift = tfe.variable(tf.zeros(hidden_size), dtype = float32) 
+		self.W_x = tfe.Variable(tf.random_uniform([inputt[1], hidden_size], -np.sqrt(2/input_size), np.sqrt(2/input_size)), dtype=float32)
+		self.B_x = tfe.Variable(tf.zeros(hidden_size), dtype=float32)
+		self.W_h = tfe.Variable(initial_value = 0.5 * np.identity(hidden_size), dtype = float32)
+		self.W_y = tfe.Variable(tf.random_uniform([hidden_size, output_size], -np.sqrt(2/hidden_size), np.sqrt(2/hidden_size)), dtype = float32)
+		self.B_y = tfe.Variable(tf.zeros(output_size), dtype=float32)
+		self.scale = tfe.Variable(tf.ones(hidden_size), dtype =float32)
+		self.shift = tfe.Variable(tf.zeros(hidden_size), dtype = float32) 
 		#initial values of A and H matricies
 		self.A = tf.zeros([self.batch_size, self.hidden_size,self.hidden_size], dtype = float32)
 		self.H = tf.zeros([self.batch_size, self.hidden_size], dtype = float32)
