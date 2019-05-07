@@ -1,6 +1,6 @@
 Setup and Code Dependencies –
 1.	Either a gmail account to access https://colab.research.google.com  or Jupyter Notebook at the local machine.
-2.  Python 3.7
+2.    Python 3.7
 3.	Tensorflow 1.13.1
 4.	Matplotlib 3.0.3
 5.	Numpy 1.14.6
